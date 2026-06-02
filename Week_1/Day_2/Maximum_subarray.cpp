@@ -1,23 +1,21 @@
 Leetcode: Maximum Subarray
+https://leetcode.com/problems/maximum-subarray/submissions/2020372271/
+
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
+            int currSum = 0;
         int maxSum = INT_MIN;
 
-        for(int i = 0; i < nums.size(); i++) {
-            for(int j = i; j < nums.size(); j++) {
+        for(int i=0;i<nums.size();i++) {
+            currSum += nums[i];
+            maxSum = max(maxSum, currSum);
 
-                int sum = 0;
-
-                for(int k = i; k <= j; k++) {
-                    sum += nums[k];
-                }
-
-                maxSum = max(maxSum, sum);
-            }
+            if(currSum < 0)
+                currSum = 0;
         }
 
         return maxSum;
-        
+
     }
 };
